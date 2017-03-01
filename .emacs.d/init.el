@@ -134,3 +134,12 @@
 ;; OSX-specific:
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 (setq exec-path (append exec-path '("/Library/TeX/texbin")))
+(set-face-attribute 'default t :font "Menlo-9")
+(setq org-startup-truncated nil)
+(setq path-to-ctags "/opt/local/bin/ctags")
+(defun create-tags (dir-name)
+    "Create tags file."
+    (interactive "DDirectory: ")
+    (shell-command
+     (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
+)
